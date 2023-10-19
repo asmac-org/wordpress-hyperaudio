@@ -435,12 +435,16 @@ function hyperaudio_transcript_shortcode_handler($atts, $transcript, $tag)
   $captionsOn = true;
   $webmonetization = false;
   $file = NULL;
+  $doubleClick = 0; // default: false
+  $playOnClick = 0; // default: false
 
   if (isset($atts['transcript-height'])) $transcriptHeight = $atts['transcript-height'];
   if (isset($atts['width'])) $width = $atts['width'];
   if (isset($atts['id'])) $transcriptid = $atts['id'];
   if (isset($atts['player_id'])) $playerid = $atts['player_id'];
   if (isset($atts['file'])) $file = $atts['file'];
+  if (isset($atts['double-click'])) $doubleClick =  (int) filter_var( $atts['double-click'], FILTER_VALIDATE_BOOLEAN );
+  if (isset($atts['play-on-click'])) $playOnClick = (int) filter_var( $atts['play-on-click'], FILTER_VALIDATE_BOOLEAN );
   if (isset($atts['show_hyperaudio_production'])) $show_hyperaudio_production = $atts['show_hyperaudio_production'];
 
   global $globaltranscriptid;
@@ -481,12 +485,12 @@ function hyperaudio_transcript_shortcode_handler($atts, $transcript, $tag)
   var autoScroll = true;
   var doubleClick = false;
 
-  new HyperaudioLite("'.$transcriptid.'", "'.$playerid.'", minimizedMode, autoScroll, doubleClick, '.$webmonetization.');';
+  new HyperaudioLite("' . esc_js( $transcriptid ) . '", "' . esc_js( $playerid ) . '", minimizedMode, autoScroll,' . esc_js( $doubleClick ) . ', ' . esc_js( $webmonetization ) . ', ' . esc_js( $playOnClick ) . ');';
 
   // FIXME: handle captions with multiple transcripts? -- warn about only one?
   if ($captionsOn == true) {
     $o .= 'var cap1 = caption();
-    cap1.init("'.$transcriptid.'", "'.$playerid.'", '.$captionMaxLength.' , '.$captionMinLength.');';
+    cap1.init("' . esc_js( $transcriptid ) . '", "' . esc_js( $playerid ) . '", ' . esc_js( $captionMaxLength ) . ' , ' . esc_js( $captionMinLength ) . ');';
   }
     
   $o .= '  </script>
