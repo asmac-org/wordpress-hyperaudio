@@ -22,6 +22,8 @@ $sharethis = '.share-this-popover{max-width:8em;pointer-events:none;-webkit-filt
 
 function hyperaudio_shortcode_handler($atts, $transcript, $tag)
 {
+  global $sharethis;
+
   $o = '';
   $src = '';
 
@@ -234,6 +236,8 @@ $o .= '  </script>
 // NOTE:FIXME: some attributes in player shortcode should be moved to transcript shortcode with related styling? Or maybe just leave in one spot and document restriction
 function hyperaudio_player_shortcode_handler($atts, $transcript, $tag)
 {
+  global $sharethis;
+
   $o = '';
   $src = '';
 
@@ -418,6 +422,8 @@ function hyperaudio_player_shortcode_handler($atts, $transcript, $tag)
 
 function hyperaudio_transcript_shortcode_handler($atts, $transcript, $tag)
 {
+  global $sharethis;
+
   $o = '';
   $width = '100%';
   $transcriptHeight = '600px';
