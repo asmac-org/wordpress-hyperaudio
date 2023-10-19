@@ -40,7 +40,7 @@ function hyperaudio_shortcode_handler($atts, $transcript, $tag)
   $captionsOn = true;
   $language = "en";
   $trackLabel = "English";
-  $webmonetization = false;
+  $webmonetization = 0; // false
   $showActive = false;
   $player = NULL;
 
@@ -433,7 +433,7 @@ function hyperaudio_transcript_shortcode_handler($atts, $transcript, $tag)
   $captionMaxLength = 37;
   $captionMinLength = 21;
   $captionsOn = true;
-  $webmonetization = false;
+  $webmonetization = 0; // default: false -- FIXME: not being used right now
   $file = NULL;
   $doubleClick = 0; // default: false
   $playOnClick = 0; // default: false
